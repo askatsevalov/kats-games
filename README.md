@@ -64,7 +64,7 @@ npm install
 Run application:
 
 ```
-npm run start
+npm run serve
 ```
 
 After this steps, Web App will be available at http://localhost:4200 (by default)
@@ -83,8 +83,8 @@ docker-compose --build -d up
 
 ## Built With
 
-* [Angular](https://angular.io/) - web application framework
-* [PrimeNG](https://primefaces.org/) - rich UI components collection for Angular
+* [Vue.js](https://vuejs.org/) - web application framework
+* [BootstrapVue](https://bootstrap-vue.org/) - rich UI components collection for Angular
 * [ASP.NET Core](https://docs.microsoft.com/ru-ru/aspnet/core/?view=aspnetcore-5.0) - framework used for web api development
 * [Nuget](https://www.nuget.org/) - dotnet dependency management
 
