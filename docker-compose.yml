@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: db
+    image: postgres:12.4-alpine
+    env_file: 
+      - .env
+    restart: always
+  
+  proxy:
+    container_name: proxy
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    links:
+      - frontend
+      - backend
+
+  backend:
+    container_name: backend
+    build: 
+      context: backend
+      args: 
+        - BACK_PORT=${BACK_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    restart: always
+  
+  frontend:
+    container_name: frontend
+    build: 
+      context: frontend
+      args: 
+        - FRONT_PORT=${FRONT_PORT}
+    env_file:
+      - .env
+    restart: always
