@@ -7,7 +7,7 @@ using Models;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CardController : ControllerBase
     {
@@ -16,28 +16,28 @@ namespace API.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<Card>>> GetCards()
+        public async Task<ActionResult<IEnumerable<Game>>> GetCards()
         {
             // TODO: Your code here
             await Task.Yield();
 
-            return new List<Card> 
+            return new List<Game> 
             { 
-                new Card
+                new Game
                 {
                     Id = 0,
-                    Path = "SALAM"
+                    Name = "SALAM"
                 },
-                new Card
+                new Game
                 {
                     Id = 1,
-                    Path = "ALEIKUM"
+                    Name = "ALEIKUM"
                 },
             };
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Card>> GetCardById(int id)
+        public async Task<ActionResult<Game>> GetCardById(int id)
         {
             // TODO: Your code here
             await Task.Yield();
@@ -46,7 +46,7 @@ namespace API.Controllers
         }
 
         [HttpPost("")]
-        public async Task<ActionResult<Card>> PostCard(Card model)
+        public async Task<ActionResult<Game>> PostCard(Game model)
         {
             // TODO: Your code here
             await Task.Yield();
@@ -55,7 +55,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCard(int id, Card model)
+        public async Task<IActionResult> PutCard(int id, Game model)
         {
             // TODO: Your code here
             await Task.Yield();
@@ -64,7 +64,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Card>> DeleteCardById(int id)
+        public async Task<ActionResult<Game>> DeleteCardById(int id)
         {
             // TODO: Your code here
             await Task.Yield();
