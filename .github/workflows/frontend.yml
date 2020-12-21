@@ -1,0 +1,11 @@
+name: Frontend build workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "Build frontend Docker container"
+      run:  docker-compose build frontend

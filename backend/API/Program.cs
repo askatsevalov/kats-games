@@ -26,7 +26,10 @@ namespace API
                 {
                     var context = services.GetRequiredService<DataBaseContext>();
                     await context.Database.MigrateAsync();
-                    await DataBaseContextSeed.SeedAsync(context, loggerFactory);
+                    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
+                    {
+                        await DataBaseContextSeed.SeedAsync(context, loggerFactory);
+                    }
                 }
                 catch (Exception ex)
                 {
