@@ -1,46 +1,55 @@
 {
   "name": "kats-games",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
+  "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "prettier": "prettier  --write './**/*.{js,vue}'",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "npm run lint:write",
+      "git add"
+    ]
+  },
   "dependencies": {
-    "@angular/animations": "~11.0.5",
-    "@angular/common": "~11.0.5",
-    "@angular/compiler": "~11.0.5",
-    "@angular/core": "~11.0.5",
-    "@angular/forms": "~11.0.5",
-    "@angular/platform-browser": "~11.0.5",
-    "@angular/platform-browser-dynamic": "~11.0.5",
-    "@angular/router": "~11.0.5",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "@popperjs/core": "^2.6.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.21.1",
+    "core-js": "^3.6.5",
+    "portal-vue": "^2.1.7",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1100.5",
-    "@angular/cli": "~11.0.5",
-    "@angular/compiler-cli": "~11.0.5",
-    "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
-    "axios": "^0.21.0",
-    "codelyzer": "^6.0.0",
-    "jasmine-core": "~3.6.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.1.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.3.6",
+    "lint-staged": "^9.5.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
   }
 }

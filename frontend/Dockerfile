@@ -8,11 +8,11 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build --prod
+RUN npm run build
 
 FROM nginx:stable-alpine
 
-COPY --from=build-env /app/dist/kats-games /usr/share/nginx/html
+COPY --from=build-env /dist /usr/share/nginx/html
 
 ARG FRONT_PORT=8000
 
