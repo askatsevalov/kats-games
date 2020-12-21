@@ -1,5 +1,7 @@
 <template>
-  <div>GAMES</div>
+  <div class="container">
+    <p>GAMES</p>
+  </div>
 </template>
 
 <script>

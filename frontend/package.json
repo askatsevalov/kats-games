@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "prettier": "prettier  --write 'src/**/*.{js,vue}'",
+    "prettier": "prettier  --write './**/*.{js,vue}'",
     "lint": "eslint --debug src/",
     "lint:write": "eslint --debug src/ --fix"
   },
