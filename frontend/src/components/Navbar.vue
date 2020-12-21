@@ -1,19 +1,34 @@
 <template>
-  <b-navbar toggleable="sm" sticky type="dark" variant="primary">
-    <b-navbar-brand href="/">
+  <b-navbar sticky type="dark" variant="primary">
+    <b-navbar-nav class="ml-auto">
+      <b-nav-item
+        v-for="route in routesLeft"
+        :key="route.path"
+        :active="$route.path == route.path"
+        :to="route.path"
+      >
+        <h4 class="d-flex flex-column m-0">
+          <b-icon :icon="route.meta.icon" class="mx-auto" />
+          {{ route.meta.title }}
+        </h4>
+      </b-nav-item>
+    </b-navbar-nav>
+    <b-navbar-brand href="/" class="mx-5">
       <b-img class="brand-logo" thumbnail src="@/assets/logo.png"></b-img>
     </b-navbar-brand>
-
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav class="mx-auto">
-        <b-nav-item v-for="route in routes" :key="route.path">
-          <b-icon :icon="route.meta.icon" />
-          <span class="ml-1">{{ route.meta.title }}</span>
-        </b-nav-item>
-      </b-navbar-nav>
-    </b-collapse>
+    <b-navbar-nav class="mr-auto">
+      <b-nav-item
+        v-for="route in routesRight"
+        :key="route.path"
+        :active="$route.path == route.path"
+        :to="route.path"
+      >
+        <h4 class="d-flex flex-column m-0">
+          <b-icon :icon="route.meta.icon" class="mx-auto" />
+          {{ route.meta.title }}
+        </h4>
+      </b-nav-item>
+    </b-navbar-nav>
   </b-navbar>
 </template>
 
@@ -21,8 +36,11 @@
 export default {
   name: 'Navbar',
   computed: {
-    routes() {
-      return this.$router.options.routes.filter(x => !x.hidden);
+    routesLeft() {
+      return this.$router.options.routes.filter(x => !x.hidden && x.meta.position === 'left');
+    },
+    routesRight() {
+      return this.$router.options.routes.filter(x => !x.hidden && x.meta.position === 'right');
     },
   },
 };
@@ -30,6 +48,6 @@ export default {
 
 <style lang="scss" scoped>
 .brand-logo {
-  height: 3rem;
+  height: 4rem;
 }
 </style>
