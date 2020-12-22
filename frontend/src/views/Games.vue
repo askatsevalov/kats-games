@@ -1,26 +1,26 @@
 <template>
   <div class="container">
-    <div v-for="item in games" :key="item.id">
-      <p>Название: {{ item.name }}</p>
-      <p>Описание: {{ item.description }}</p>
-      <p>Маршрут: {{ item.route }}</p>
-      <p>Путь к изображению: {{ item.imageUrl }}</p>
-    </div>
+
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { listGames } from '@/api/game';
+import GameCard from '../components/GameCard.vue';
 
 export default {
   name: 'Games',
+  components: {
+    GameCard,
+  },
   data() {
     return {
       games: [],
     };
   },
   created() {
-    axios.get('/api/game').then(response => {
+    listGames().then(response => {
+      console.log(response);
       this.games = response.data;
     });
   },

@@ -27,16 +27,6 @@ export default new VueRouter({
       meta: {
         title: 'Игры',
         icon: 'controller',
-        position: 'left',
-      },
-    },
-    {
-      path: '/awards',
-      component: () => import('@/views/Games.vue'),
-      meta: {
-        title: 'Награды',
-        icon: 'award',
-        position: 'right',
       },
     },
 

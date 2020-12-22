@@ -50,7 +50,7 @@ namespace Data.Repos
             if (result != null)
             {
                 result.Name = item.Name;
-                result.ImageUrl = item.Name;
+                result.ImageUrl = item.ImageUrl;
                 result.Route = item.Route;
                 result.Description = item.Description;
                 await _context.SaveChangesAsync();
