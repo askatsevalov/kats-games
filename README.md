@@ -84,8 +84,8 @@ docker-compose --build -d up
 ## Built With
 
 * [Vue.js](https://vuejs.org/) - web application framework
-* [BootstrapVue](https://bootstrap-vue.org/) - rich UI components collection for Angular
-* [ASP.NET Core](https://docs.microsoft.com/ru-ru/aspnet/core/?view=aspnetcore-5.0) - framework used for web api development
+* [Buefy](https://buefy.org/) - rich UI components collection for Vue.js
+* [ASP.NET Core](https://docs.microsoft.com/ru-ru/aspnet/core/) - framework used for web api development
 * [Nuget](https://www.nuget.org/) - dotnet dependency management
 
 ## Authors

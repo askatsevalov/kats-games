@@ -25,8 +25,8 @@ export default new VueRouter({
       path: '/games',
       component: () => import('@/views/Games.vue'),
       meta: {
-        title: 'Игры',
-        icon: 'controller',
+        title: 'Настольные игры',
+        icon: 'chess',
       },
     },
 

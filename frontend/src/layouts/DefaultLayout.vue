@@ -1,7 +1,9 @@
 <template>
   <main>
     <Navbar />
-    <div class="main"><slot /></div>
+    <div class="main">
+      <div class="container px-2"><slot /></div>
+    </div>
     <Footer />
   </main>
 </template>
@@ -42,6 +44,6 @@ main {
 }
 
 .main::-webkit-scrollbar-thumb {
-  background: var(--secondary);
+  background: hsl(0, 0%, 29%);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-
+  <div class="columns is-multiline is-variable mt-3 is-4">
+    <GameCard v-for="item in games" :key="item.id" :value="item" class="column is-one-third my-2" />
   </div>
 </template>
 
