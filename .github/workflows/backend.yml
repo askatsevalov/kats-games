@@ -1,7 +1,9 @@
 name: Dotnet build and test workflow
 
-on: [push]
-
+on:
+  pull_request:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,4 +16,6 @@ jobs:
       - name: Run tests
         run: cd backend && dotnet restore && dotnet test --configuration Release
       - name: "Build backend Docker container"
-        run: docker-compose build backend
+        run: |
+          cp .env.example .env
+          docker-compose build backend

@@ -5,6 +5,7 @@ on:
     branches:
       - master
   pull_request:
+    types: [closed]
     branches:
       - master
 
@@ -12,18 +13,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
+    environment: deployment_environment
     steps:
       - uses: actions/checkout@v2
       - name: Setup SSH access
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: "Deployment"
         run: |
-          which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
-          eval `ssh-agent -s`
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-      - name: "Build backend Docker container"
-        run: |
-          ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $USER@$HOST_NAME
-          "cd $TARGET_DIR &&
-          git checkout master &&
-          git pull origin master &&
-          docker-compose up --build -d &&
+          ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" ${{secrets.USER}}@${{secrets.HOST_NAME}} \
+          "cd ~/code/kats-games && \
+          git checkout master && \
+          git pull origin master && \
+          docker-compose up --build -d && \
           exit"
