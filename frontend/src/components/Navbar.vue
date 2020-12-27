@@ -1,7 +1,7 @@
 <template>
   <b-navbar class="my-navbar" type="is-white" spaced shadow wrapper-class="container">
     <template slot="brand">
-      <b-navbar-item class="brand ml-1">
+      <b-navbar-item class="brand ml-1" tag="router-link" to="/">
         <img class="brand-logo" src="@/assets/logo.png" alt="Kats Games" />
       </b-navbar-item>
       <div class="is-flex is-flex-direction-row is-hidden-touch">

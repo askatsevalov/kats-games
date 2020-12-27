@@ -1,9 +1,9 @@
 <template>
   <div class="mt-5">
     <div class="columns is-mobile header-row">
-      <div class="column is-one-quarter back-button-container">
+      <div class="column is-one-third back-button-container">
         <b-button class="back-button" type="is-text" expanded @click="onBack">
-          <fa-icon icon="chevron-left" /> Back</b-button
+          <fa-icon icon="chevron-left" class="mr-2" />Назад</b-button
         >
       </div>
       <div class="column">

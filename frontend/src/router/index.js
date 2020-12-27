@@ -22,7 +22,7 @@ export default new VueRouter({
       hidden: true,
     },
     {
-      path: '/games/',
+      path: '/games',
       component: () => import('@/views/Games.vue'),
       meta: {
         title: 'Настольные игры',

@@ -12,8 +12,10 @@ RUN npm run build
 
 FROM nginx:stable-alpine
 
+COPY nginx.conf /temp/nginx.conf
+
+RUN envsubst /app < /temp/nginx.conf > /etc/nginx/conf.d/default.conf
+
 COPY --from=build-env /app/dist /usr/share/nginx/html
 
-ARG FRONT_PORT=8000
-
-EXPOSE ${FRONT_PORT}
+EXPOSE 80
