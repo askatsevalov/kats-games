@@ -1,34 +1,43 @@
 <template>
-  <b-navbar sticky type="dark" variant="primary">
-    <b-navbar-nav class="ml-auto">
-      <b-nav-item
-        v-for="route in routesLeft"
+  <b-navbar class="my-navbar" type="is-white" spaced shadow wrapper-class="container">
+    <template slot="brand">
+      <b-navbar-item class="brand ml-1">
+        <img class="brand-logo" src="@/assets/logo.png" alt="Kats Games" />
+      </b-navbar-item>
+      <div class="is-flex is-flex-direction-row is-hidden-touch">
+        <b-navbar-item target="_blank" href="https://github.com/askatsevalov">
+          <fa-icon :icon="['fab', 'github']" />
+        </b-navbar-item>
+        <b-navbar-item target="_blank" href="https://www.instagram.com/askatsevalov/">
+          <fa-icon :icon="['fab', 'instagram']" />
+        </b-navbar-item>
+        <b-navbar-item target="_blank" href="https://www.facebook.com/askatsevalov/">
+          <fa-icon :icon="['fab', 'facebook']" />
+        </b-navbar-item>
+        <b-navbar-item target="_blank" href="https://twitter.com/askatsevalov">
+          <fa-icon :icon="['fab', 'twitter']" />
+        </b-navbar-item>
+        <b-navbar-item target="_blank" href="https://vk.com/askatsevalov">
+          <fa-icon :icon="['fab', 'vk']" />
+        </b-navbar-item>
+        <b-navbar-item target="_blank" href="https://t.me/askatsevalov">
+          <fa-icon :icon="['fab', 'telegram']" />
+        </b-navbar-item>
+      </div>
+    </template>
+    <template slot="end">
+      <b-navbar-item
+        v-for="route in routes"
         :key="route.path"
-        :active="$route.path == route.path"
+        :active="$route.path.startsWith(route.path)"
         :to="route.path"
+        tag="router-link"
+        class="is-size-5"
       >
-        <h4 class="d-flex flex-column m-0">
-          <b-icon :icon="route.meta.icon" class="mx-auto" />
-          {{ route.meta.title }}
-        </h4>
-      </b-nav-item>
-    </b-navbar-nav>
-    <b-navbar-brand href="/" class="mx-5">
-      <b-img class="brand-logo" thumbnail src="@/assets/logo.png"></b-img>
-    </b-navbar-brand>
-    <b-navbar-nav class="mr-auto">
-      <b-nav-item
-        v-for="route in routesRight"
-        :key="route.path"
-        :active="$route.path == route.path"
-        :to="route.path"
-      >
-        <h4 class="d-flex flex-column m-0">
-          <b-icon :icon="route.meta.icon" class="mx-auto" />
-          {{ route.meta.title }}
-        </h4>
-      </b-nav-item>
-    </b-navbar-nav>
+        <fa-icon :icon="route.meta.icon" class="mr-2" />
+        {{ route.meta.title }}
+      </b-navbar-item>
+    </template>
   </b-navbar>
 </template>
 
@@ -36,18 +45,33 @@
 export default {
   name: 'Navbar',
   computed: {
-    routesLeft() {
-      return this.$router.options.routes.filter(x => !x.hidden && x.meta.position === 'left');
-    },
-    routesRight() {
-      return this.$router.options.routes.filter(x => !x.hidden && x.meta.position === 'right');
+    routes() {
+      return this.$router.options.routes.filter(x => !x.hidden);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.my-navbar {
+  color: rgb(53, 53, 53);
+}
+
+a.navbar-item.is-active {
+  color: #7957d5 !important;
+}
+
+a.navbar-item:not(.is-active):hover {
+  background-color: #fafafa !important;
+  color: #7957d5 !important;
+}
+
 .brand-logo {
-  height: 4rem;
+  max-height: 5rem;
+}
+
+.navbar-brand .brand {
+  padding: 0;
+  width: 15rem;
 }
 </style>

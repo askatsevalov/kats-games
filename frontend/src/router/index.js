@@ -22,22 +22,17 @@ export default new VueRouter({
       hidden: true,
     },
     {
-      path: '/games',
+      path: '/games/',
       component: () => import('@/views/Games.vue'),
       meta: {
-        title: 'Игры',
-        icon: 'controller',
-        position: 'left',
+        title: 'Настольные игры',
+        icon: 'chess',
       },
     },
     {
-      path: '/awards',
-      component: () => import('@/views/Games.vue'),
-      meta: {
-        title: 'Награды',
-        icon: 'award',
-        position: 'right',
-      },
+      path: '/games/:id',
+      component: () => import('@/views/GameDetails.vue'),
+      hidden: true,
     },
 
     { path: '*', redirect: '/404', hidden: true },

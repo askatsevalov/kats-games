@@ -10,12 +10,13 @@
     "lint:write": "eslint --debug src/ --fix"
   },
   "dependencies": {
-    "@popperjs/core": "^2.6.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "axios": "^0.21.0",
-    "bootstrap": "^4.5.3",
-    "bootstrap-vue": "^2.21.1",
+    "buefy": "^0.9.4",
     "core-js": "^3.6.5",
-    "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

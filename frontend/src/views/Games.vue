@@ -1,26 +1,25 @@
 <template>
-  <div class="container">
-    <div v-for="item in games" :key="item.id">
-      <p>Название: {{ item.name }}</p>
-      <p>Описание: {{ item.description }}</p>
-      <p>Маршрут: {{ item.route }}</p>
-      <p>Путь к изображению: {{ item.imageUrl }}</p>
-    </div>
+  <div class="columns is-multiline is-variable mt-3 is-4">
+    <GameCard v-for="item in games" :key="item.id" :value="item" class="column is-one-third my-2" />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { listGames } from '@/api/game';
+import GameCard from '../components/GameCard.vue';
 
 export default {
   name: 'Games',
+  components: {
+    GameCard,
+  },
   data() {
     return {
       games: [],
     };
   },
   created() {
-    axios.get('/api/game').then(response => {
+    listGames().then(response => {
       this.games = response.data;
     });
   },
