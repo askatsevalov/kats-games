@@ -29,8 +29,9 @@
       <b-navbar-item
         v-for="route in routes"
         :key="route.path"
-        :active="$route.path == route.path"
+        :active="$route.path.startsWith(route.path)"
         :to="route.path"
+        tag="router-link"
         class="is-size-5"
       >
         <fa-icon :icon="route.meta.icon" class="mr-2" />

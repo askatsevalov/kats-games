@@ -20,7 +20,6 @@ export default {
   },
   created() {
     listGames().then(response => {
-      console.log(response);
       this.games = response.data;
     });
   },

@@ -1,14 +1,18 @@
 <template>
   <div>
-    <div class="image-container is-clickable" @click="kek">
+    <div class="image-container">
       <b-image :src="baseUrl + value.imageUrl" ratio="1by1">
         <div>
           <b-skeleton slot="placeholder" class="skeleton-placeholder" height="100%"></b-skeleton>
         </div>
       </b-image>
-      <div class="image-content p-4">
+      <div class="image-content is-overlay is-flex is-flex-direction-column p-4">
         <h1 class="title has-text-light">{{ value.name }}</h1>
-        <div class="mt-3 content-actions">
+        <div class="mt-3 content-actions is-flex-grow-1">
+          <b-button type="is-info is-light" class="mb-2" expanded @click="onDetails(value.id)">
+            Подробнее
+            <fa-icon icon="info-circle" />
+          </b-button>
           <b-button type="is-primary" class="mb-2" expanded>
             Создать комнату
             <fa-icon icon="plus-circle" />
@@ -41,8 +45,8 @@ export default {
     },
   },
   methods: {
-    kek() {
-      this.$router.push('/salam');
+    onDetails(id) {
+      this.$router.push(`/games/${id}`);
     },
   },
 };
@@ -56,13 +60,6 @@ export default {
 }
 
 .image-content {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
   opacity: 0;
   transition: 0.3s ease;
   background-color: rgba(0, 0, 0, 0.5);
@@ -79,6 +76,9 @@ export default {
 }
 
 .content-actions {
-  position: relative;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
 }
 </style>
