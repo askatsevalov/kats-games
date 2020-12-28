@@ -16,11 +16,13 @@ export default new VueRouter({
         layout: 'EmptyLayout',
       },
     },
+
     {
       path: '/',
       redirect: '/games',
       hidden: true,
     },
+
     {
       path: '/games',
       component: () => import('@/views/Games.vue'),
@@ -32,6 +34,14 @@ export default new VueRouter({
     {
       path: '/games/:id',
       component: () => import('@/views/GameDetails.vue'),
+      hidden: true,
+    },
+
+    {
+      path: '/tictactoe/:roomId',
+      name: '/tictactoe',
+      component: () => import('@/views/TicTacToe.vue'),
+      props: true,
       hidden: true,
     },
 

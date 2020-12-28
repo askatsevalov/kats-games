@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const baseURL = (() => {
   if (process.env.NODE_ENV === 'development') {
-    const host = process.env.VUE_APP_BACK_END_HOST || 'localhost';
-    const port = process.env.VUE_APP_BACK_END_PORT || '5000';
+    const host = process.env.VUE_APP_API_HOST || 'localhost';
+    const port = process.env.VUE_APP_API_PORT || '5000';
     return `http://${host}:${port}`;
   }
   return '';

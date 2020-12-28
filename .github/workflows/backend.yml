@@ -14,8 +14,8 @@ jobs:
         with:
           dotnet-version: 3.1
       - name: Run tests
-        run: cd backend && dotnet restore && dotnet test --configuration Release
-      - name: "Build backend Docker container"
+        run: cd api && dotnet restore && dotnet test --configuration Release
+      - name: "Build api Docker container"
         run: |
           cp .env.example .env
-          docker-compose build backend
+          docker-compose build api

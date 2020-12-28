@@ -12,13 +12,13 @@
     </div>
     <div class="columns">
       <div class="column">
-        <b-button type="is-primary is-light" expanded>
+        <b-button type="is-primary is-light" expanded @click="joinRoom(game.route)">
           Присоединиться
           <fa-icon icon="sign-in-alt" />
         </b-button>
       </div>
       <div class="column">
-        <b-button type="is-primary" class="mb-2" expanded>
+        <b-button type="is-primary" class="mb-2" expanded @click="createRoom(game.route)">
           Создать комнату
           <fa-icon icon="plus-circle" />
         </b-button>
@@ -63,6 +63,22 @@ export default {
   methods: {
     onBack() {
       this.$router.push('/games');
+    },
+    createRoom(route) {
+      this.$router.push({ name: route, params: { roomId: 'null' } });
+    },
+    joinRoom(route) {
+      this.$buefy.dialog.prompt({
+        title: 'Код комнаты: ',
+        size: 'is-large',
+        confirmText: 'Принять',
+        cancelText: 'Отмена',
+        inputAttrs: {
+          maxlength: 5,
+        },
+        trapFocus: true,
+        onConfirm: value => this.$router.push({ name: route, params: { roomId: value } }),
+      });
     },
   },
 };
