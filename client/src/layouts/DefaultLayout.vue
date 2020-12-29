@@ -1,8 +1,8 @@
 <template>
   <main>
     <Navbar />
-    <div class="main">
-      <div class="container px-2"><slot /></div>
+    <div class="main is-flex">
+      <div :class="containerized + ' is-flex-grow-1'"><slot /></div>
     </div>
     <Footer />
   </main>
@@ -17,6 +17,11 @@ export default {
   components: {
     Navbar,
     Footer,
+  },
+  computed: {
+    containerized() {
+      return this.$route.meta.fullwidth ? 'is-clipped' : 'container px-2';
+    },
   },
 };
 </script>

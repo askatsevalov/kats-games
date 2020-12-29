@@ -1,6 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const tictactoe = require('./namespaces/tictactoe');
+const imaginarium = require('./namespaces/imaginarium');
 
 const app = express();
 app.use(cors());
@@ -16,3 +17,4 @@ const io = require('socket.io')(server, {
 });
 
 tictactoe.setup(io);
+imaginarium.setup(io);

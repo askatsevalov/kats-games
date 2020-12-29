@@ -40,9 +40,40 @@ export default new VueRouter({
     {
       path: '/tictactoe/:roomId',
       name: '/tictactoe',
-      component: () => import('@/views/TicTacToe.vue'),
+      component: () => import('@/views/Lobby.vue'),
       props: true,
       hidden: true,
+      meta: {
+        fullwidth: true,
+      },
+      children: [
+        {
+          path: '',
+          component: () => import('@/games/TicTacToe.vue'),
+          meta: {
+            fullwidth: true,
+          },
+        },
+      ],
+    },
+    {
+      path: '/imaginarium/:roomId',
+      name: '/imaginarium',
+      component: () => import('@/views/Lobby.vue'),
+      props: true,
+      hidden: true,
+      meta: {
+        fullwidth: true,
+      },
+      children: [
+        {
+          path: '',
+          component: () => import('@/games/Imaginarium.vue'),
+          meta: {
+            fullwidth: true,
+          },
+        },
+      ],
     },
 
     { path: '*', redirect: '/404', hidden: true },

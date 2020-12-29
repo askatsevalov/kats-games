@@ -11,6 +11,7 @@ services:
     links:
       - client
       - api
+      - socket
 
   api:
     container_name: api
@@ -32,6 +33,19 @@ services:
       - .env
     restart: always
 
+  socket:
+    container_name: socket
+    build: 
+      context: socket
+      args: 
+      - SOCKET_PORT=${SOCKET_PORT}
+      - REDIS_URL=${REDIS_URL}
+    env_file: 
+      - .env
+    depends_on:
+      - redis
+    restart: always
+
   postgres:
     container_name: db
     image: postgres:12.4-alpine
@@ -41,7 +55,5 @@ services:
 
   redis:
     container_name: redis
-    image: redis:6.0.9-alpine
-    env_file:
-      - .env
-    restart: always
+    image: redis:alpine
+    restart: always  

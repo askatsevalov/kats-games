@@ -6,18 +6,18 @@
           <b-skeleton slot="placeholder" class="skeleton-placeholder" height="100%"></b-skeleton>
         </div>
       </b-image>
-      <div class="image-content is-overlay is-flex is-flex-direction-column p-4">
+      <div class="image-content is-overlay is-flex is-flex-direction-column p-4 has-text-centered">
         <h1 class="title has-text-light">{{ value.name }}</h1>
         <div class="mt-3 content-actions is-flex-grow-1">
           <b-button type="is-info is-light" class="mb-2" expanded @click="onDetails(value.id)">
             Подробнее
             <fa-icon icon="info-circle" />
           </b-button>
-          <b-button type="is-primary" class="mb-2" expanded>
+          <b-button type="is-primary" class="mb-2" expanded @click="createRoom(value.route)">
             Создать комнату
             <fa-icon icon="plus-circle" />
           </b-button>
-          <b-button type="is-primary is-light" expanded>
+          <b-button type="is-primary is-light" expanded @click="joinRoom(value.route)">
             Присоединиться
             <fa-icon icon="sign-in-alt" />
           </b-button>
@@ -48,6 +48,22 @@ export default {
     onDetails(id) {
       this.$router.push(`/games/${id}`);
     },
+    createRoom(route) {
+      this.$router.push({ name: route, params: { roomId: 'null' } });
+    },
+    joinRoom(route) {
+      this.$buefy.dialog.prompt({
+        title: 'Код комнаты',
+        size: 'is-large',
+        confirmText: 'Принять',
+        cancelText: 'Отмена',
+        inputAttrs: {
+          maxlength: 5,
+        },
+        trapFocus: true,
+        onConfirm: value => this.$router.push({ name: route, params: { roomId: value } }),
+      });
+    },
   },
 };
 </script>
@@ -55,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 .image-container {
   position: relative;
-  text-align: center;
+  has-text-centeredtext-align: center;
   color: white;
 }
 
