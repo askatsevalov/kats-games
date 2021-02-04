@@ -1,13 +1,6 @@
 version: "3"
 
 services:
-  postgres:
-    container_name: db
-    image: postgres:12.4-alpine
-    env_file: 
-      - .env
-    restart: always
-  
   proxy:
     container_name: proxy
     image: nginx:stable-alpine
@@ -16,25 +9,51 @@ services:
     ports:
       - 80:80
     links:
-      - frontend
-      - backend
+      - client
+      - api
+      - socket
 
-  backend:
-    container_name: backend
-    build: 
-      context: backend
-      args: 
-        - BACK_PORT=${BACK_PORT}
+  api:
+    container_name: api
+    build:
+      context: api
+      args:
+        - API_PORT=${API_PORT}
     env_file:
       - .env
     depends_on:
       - postgres
     restart: always
-  
-  frontend:
-    container_name: frontend
-    build: 
-      context: frontend
+
+  client:
+    container_name: client
+    build:
+      context: client
     env_file:
       - .env
     restart: always
+
+  socket:
+    container_name: socket
+    build: 
+      context: socket
+      args: 
+      - SOCKET_PORT=${SOCKET_PORT}
+      - REDIS_URL=${REDIS_URL}
+    env_file: 
+      - .env
+    depends_on:
+      - redis
+    restart: always
+
+  postgres:
+    container_name: db
+    image: postgres:12.4-alpine
+    env_file:
+      - .env
+    restart: always
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    restart: always  

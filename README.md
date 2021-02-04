@@ -17,10 +17,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 #### Backend
 
-Go to backend folder:
+Go to api folder:
 
 ```
-cd backend
+cd api
 ```
 
 Install all dependencies:
@@ -47,12 +47,12 @@ By following the link you will see api documentaion created with Swagger UI
 
 // @TODO - Insert screenshot of swagger
 
-#### Frontend
+#### Client
 
-Go to frontend folder:
+Go to client folder:
 
 ```
-cd frontend
+cd client
 ```
 
 Install all dependencies:
