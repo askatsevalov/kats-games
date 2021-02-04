@@ -62,7 +62,7 @@ a.navbar-item.is-active {
 }
 
 a.navbar-item:not(.is-active):hover {
-  background-color: #fafafa !important;
+  background-color: transparent !important;
   color: #7957d5 !important;
 }
 

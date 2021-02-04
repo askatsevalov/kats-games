@@ -14,8 +14,10 @@ module.exports.setup = io => {
     });
 };
 class Room extends RoomBase {
-    players = {};
-    state = new State();
+    constructor() {
+        players = {};
+        state = new State();
+    }
 }
 
 class Player extends PlayerBase {

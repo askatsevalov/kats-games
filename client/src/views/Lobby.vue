@@ -35,8 +35,8 @@
         </div>
       </div>
     </div>
-    <b-sidebar class="is-hidden-desktop" type="is-light" fullheight v-model="showPlayers">
-      <PlayerCard class="p-1" v-for="(item, id) in players" :key="id" :value="item" />
+    <b-sidebar v-model="showPlayers" class="is-hidden-desktop" type="is-light" fullheight>
+      <PlayerCard v-for="(item, id) in players" :key="id" :value="item" class="p-1" />
     </b-sidebar>
   </div>
 </template>
@@ -64,19 +64,24 @@ export default {
       showPlayers: false,
     };
   },
+  computed: {
+    game() {
+      return this.$route.path.split('/')[1];
+    },
+  },
   watch: {
     $route() {
       this.createOrJoin();
     },
   },
   created() {
-    this.socket = socketClient(`/${this.$route.path.split('/')[1]}` + '/lobby');
+    this.socket = socketClient(`/${this.game}` + '/lobby');
     this.socket.on('connect', () => {
       this.createOrJoin();
     });
     this.socket.on('disconnect', () => {});
     this.socket.on('room-created', roomId => {
-      this.$router.push({ name: `/${this.$route.path.split('/')[1]}`, params: { roomId: roomId } });
+      this.$router.push({ name: `/${this.game}`, params: { roomId: roomId } });
     });
     this.socket.on('ready-to-start', ready => {
       this.stage = ready ? 'ready' : 'wait';

@@ -17,14 +17,15 @@ function setupLobby(io, game, minPlayers, maxPlayers) {
 
         socket.on('create-room', async () => {
             var roomId = Math.random().toString(36).substr(2, 5).toUpperCase();
-            var room = new RoomBase();
+            var room = new RoomBase(game);
             await redis.set(roomId, JSON.stringify(room));
             socket.emit('room-created', roomId);
         });
 
         socket.on('join-room', async (roomId, playerName) => {
             var room = JSON.parse(await redis.get(roomId));
-            if (!room) {
+            console.log(room);
+            if (!room || room.game != game) {
                 socket.emit('no-room');
                 return;
             }
@@ -68,8 +69,12 @@ function setupLobby(io, game, minPlayers, maxPlayers) {
 };
 
 class RoomBase {
+    constructor(game) {
+        this.game = game;
+    }
     players = {};
     state = new StateBase();
+    game = '';
 }
 
 class PlayerBase {
