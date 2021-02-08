@@ -1,6 +1,10 @@
 name: Deployment
 
 on:
+  workflow_run:
+    workflows: ["API build and test", "Client build"]
+    types:
+      - completed
   push:
     branches:
       - master
