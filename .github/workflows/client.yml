@@ -1,4 +1,4 @@
-name: Client build workflow
+name: Client build
 
 on:
   push:
