@@ -1,6 +1,7 @@
 <template>
   <div class="columns is-mobile">
     <div class="column is-one-third">
+      <b-tag v-if="me" class="is-danger me-badge" rounded>Я</b-tag>
       <b-image :src="avatarUrl" ratio="1by1" rounded>
         <div>
           <b-skeleton slot="placeholder" class="skeleton-placeholder" height="100%"></b-skeleton>
@@ -8,7 +9,7 @@
       </b-image>
     </div>
     <div class="column is-two-thirds is-flex is-align-items-center has-text-centered">
-      <h3 class="title is-3 one-line">{{ value.name }}</h3>
+      <h3 class="title is-3 one-line mb-0">{{ value.name }}</h3>
     </div>
   </div>
 </template>
@@ -22,6 +23,10 @@ export default {
     value: {
       type: Object,
       default: new Object(),
+    },
+    me: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -41,5 +46,10 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.me-badge {
+  position: absolute;
+  z-index: 1000;
 }
 </style>

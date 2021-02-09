@@ -43,6 +43,10 @@ function setupLobby(io, game, minPlayers, maxPlayers) {
         socket.on('leave-room', async roomId => {
             await leaveRoom(socket, roomId);
         });
+
+        socket.on('start-game', roomId => {
+            lobby.to(roomId).emit('game-started');
+        });
     });
 
     async function leaveRoom(socket, roomId) {
