@@ -88,8 +88,6 @@ export default {
     this.socket.on('disconnect', () => {});
     this.socket.on('room-created', roomId => {
       this.$router.replace({ name: `/${this.game}`, params: { roomId: roomId } });
-      this.roomId = roomId;
-      this.createOrJoin();
     });
     this.socket.on('ready-to-start', ready => {
       this.stage = ready ? 'ready' : 'wait';

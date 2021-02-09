@@ -24,7 +24,6 @@ function setupLobby(io, game, minPlayers, maxPlayers) {
 
         socket.on('join-room', async (roomId, playerName) => {
             var room = JSON.parse(await redis.get(roomId));
-            console.log(room);
             if (!room || room.game != game) {
                 socket.emit('no-room');
                 return;
