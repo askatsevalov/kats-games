@@ -5,7 +5,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'TicTacToe',
+  created() {
+    console.log("it' tictactoe time!");
+  },
+};
 </script>
 
 <style></style>

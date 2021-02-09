@@ -1,9 +1,9 @@
 <template>
   <div class="fullheight">
     <div v-if="stage == 'wait' || stage == 'ready' || stage == 'play'" class="is-hidden-desktop">
-      <b-button type="is-info" class="is-radiusless" expanded @click="showPlayers = true"
-        >Игроков: {{ Object.keys(players).length }}</b-button
-      >
+      <b-button type="is-info" class="is-radiusless" expanded @click="showPlayers = true">
+        Игроков: {{ Object.keys(players).length }}
+      </b-button>
     </div>
     <div class="columns fullheight is-gapless">
       <div
@@ -11,7 +11,7 @@
         class="columns column is-one-fifth is-hidden-touch players-menu"
       >
         <div class="column is-full">
-          <PlayerCard v-for="(item, id) in players" :key="id" :value="item" />
+          <PlayerCard v-for="(item, id) in players" :key="id" :value="item" :me="socket.id == id" />
         </div>
       </div>
       <div class="is-flex is-align-items-center is-justify-content-center column">
@@ -36,7 +36,13 @@
       </div>
     </div>
     <b-sidebar v-model="showPlayers" class="is-hidden-desktop" type="is-light" fullheight>
-      <PlayerCard v-for="(item, id) in players" :key="id" :value="item" class="p-1" />
+      <PlayerCard
+        v-for="(item, id) in players"
+        :key="id"
+        :value="item"
+        :me="socket.id == id"
+        class="p-1"
+      />
     </b-sidebar>
   </div>
 </template>
@@ -81,7 +87,7 @@ export default {
     });
     this.socket.on('disconnect', () => {});
     this.socket.on('room-created', roomId => {
-      this.$router.push({ name: `/${this.game}`, params: { roomId: roomId } });
+      this.$router.replace({ name: `/${this.game}`, params: { roomId: roomId } });
     });
     this.socket.on('ready-to-start', ready => {
       this.stage = ready ? 'ready' : 'wait';
@@ -95,6 +101,9 @@ export default {
     this.socket.on('no-room', () => {
       this.stage = 'non-exist';
     });
+    this.socket.on('game-started', () => {
+      this.stage = 'play';
+    });
   },
   beforeDestroy() {
     this.socket.close();
@@ -106,7 +115,6 @@ export default {
       } else {
         this.$buefy.dialog.prompt({
           title: 'Имя',
-          size: 'is-large',
           confirmText: 'Принять',
           canCancel: false,
           trapFocus: true,
@@ -115,7 +123,7 @@ export default {
       }
     },
     startGame() {
-      this.stage = 'play';
+      this.socket.emit('start-game', this.roomId);
     },
   },
 };

@@ -10,6 +10,7 @@
     "lint:write": "eslint --debug src/ --fix"
   },
   "dependencies": {
+    "@creativebulma/bulma-badge": "^1.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",

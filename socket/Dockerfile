@@ -2,9 +2,9 @@ FROM node:12.7-alpine
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
-RUN npm install --loglevel=error
+RUN yarn install
 
 COPY . .
 

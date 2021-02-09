@@ -54,7 +54,6 @@ export default {
     joinRoom(route) {
       this.$buefy.dialog.prompt({
         title: 'Код комнаты',
-        size: 'is-large',
         confirmText: 'Принять',
         cancelText: 'Отмена',
         inputAttrs: {
