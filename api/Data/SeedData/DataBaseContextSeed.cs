@@ -12,18 +12,19 @@ namespace Data.SeedData
 {
     public class DataBaseContextSeed
     {
-        public static async Task SeedAsync(DataBaseContext context, ILoggerFactory loggerFactory)
+        public static async Task SeedAsync(DataBaseContext context, string env, ILoggerFactory loggerFactory)
         {
             try
             {
                 if (!context.Games.Any())
                 {
-                    var GamesData = File.ReadAllText("../Data/SeedData/games.json");
+                    var GamesData = File.ReadAllText($"{(env == "Development" ? "../Data/" : "")}SeedData/games.json");
 
                     var Games = JsonConvert.DeserializeObject<List<Game>>(GamesData);
                     foreach (var item in Games)
                     {
-                        await context.Games.AddAsync(item);
+                        if (!context.Games.Any(x => x.Id == item.Id))
+                            await context.Games.AddAsync(item);
                     }
                 }
                 await context.SaveChangesAsync();
