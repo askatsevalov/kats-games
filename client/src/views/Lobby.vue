@@ -24,7 +24,7 @@
             >Начать игру</b-button
           >
         </div>
-        <div v-if="stage == 'play'"><router-view /></div>
+        <div v-if="stage == 'play'" class="mt-3"><router-view :gameprops="gameProps" /></div>
         <div v-if="stage == 'non-exist'" class="title is-1 has-text-primary box has-text-centered">
           <fa-icon icon="surprise" />
           <h2>Ой, комната не существует...</h2>
@@ -74,6 +74,13 @@ export default {
     game() {
       return this.$route.path.split('/')[1];
     },
+    gameProps() {
+      return {
+        socket: this.socket,
+        firstPlayerSocket: Object.keys(this.players)[0],
+        roomId: this.roomId,
+      };
+    },
   },
   watch: {
     $route() {
@@ -81,7 +88,7 @@ export default {
     },
   },
   created() {
-    this.socket = socketClient(`/${this.game}` + '/lobby');
+    this.socket = socketClient(`/${this.game}`);
     this.socket.on('connect', () => {
       this.createOrJoin();
     });

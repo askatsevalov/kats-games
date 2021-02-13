@@ -1,7 +1,7 @@
 const redis = require('../utils/redis');
 
 function setupLobby(io, game, minPlayers, maxPlayers) {
-    const lobby = io.of(game + '/lobby');
+    const lobby = io.of(game);
     lobby.on('connection', socket => {
         console.log('Client is connected to lobby');
 
