@@ -9,7 +9,7 @@
       {{ field[item] }}
     </button>
     <div>{{ message }}</div>
-    <button class="reset-btn" v-show="gameOver" @click="reset">Начать заново</button>
+    <button v-show="gameOver" class="reset-btn" @click="reset">Начать заново</button>
   </div>
 </template>
 

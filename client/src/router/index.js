@@ -39,7 +39,6 @@ export default new VueRouter({
 
     {
       path: '/tictactoe/:roomId',
-      name: '/tictactoe',
       component: () => import('@/views/Lobby.vue'),
       props: true,
       hidden: true,
@@ -48,6 +47,7 @@ export default new VueRouter({
       },
       children: [
         {
+          name: '/tictactoe',
           path: '',
           component: () => import('@/games/TicTacToe.vue'),
           meta: {
@@ -58,7 +58,6 @@ export default new VueRouter({
     },
     {
       path: '/imaginarium/:roomId',
-      name: '/imaginarium',
       component: () => import('@/views/Lobby.vue'),
       props: true,
       hidden: true,
@@ -67,6 +66,7 @@ export default new VueRouter({
       },
       children: [
         {
+          name: '/imaginarium',
           path: '',
           component: () => import('@/games/Imaginarium.vue'),
           meta: {
